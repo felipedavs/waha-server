@@ -1,14 +1,13 @@
 FROM devlikeapro/waha:latest
 
-# Copia o .env para dentro do container (caso exista localmente)
+# Copia o .env se você quiser manter
 COPY waha-server/.env /app/.env
 
-# Força o WAHA a usar essa API key dentro do container
+# Define a chave direto na inicialização — força o container a usar essa
 ENV WAHA_API_KEY=davs
-ENV WAHA_ENV_FILE=/app/.env
 ENV WAHA_PORT=${PORT:-3000}
 
 EXPOSE 3000
 
-# Define o comando padrão
-CMD ["bash", "-c", "echo 🔑 WAHA_API_KEY=$WAHA_API_KEY && xvfb-run node /app/main.js"]
+# Força o WAHA a rodar com a chave
+CMD export WAHA_API_KEY=davs && xvfb-run node /app/main.js

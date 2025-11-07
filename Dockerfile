@@ -1,8 +1,17 @@
-# Usa a imagem oficial do WAHA (WhatsApp HTTP API)
+# Usa a imagem oficial do WAHA
 FROM devlikeapro/waha:latest
 
-# Copia o arquivo .env da raiz do repositório para dentro do container
+# Define diretório de trabalho
+WORKDIR /app
+
+# Copia o .env para dentro do container
 COPY .env /app/.env
 
-# Expõe a porta que o Render utiliza
+# Expõe a porta do serviço
 EXPOSE 3000
+
+# Define a variável de ambiente explicita
+ENV WAHA_ENV_FILE=/app/.env
+
+# Executa o WAHA
+CMD ["npm", "start"]

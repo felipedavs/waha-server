@@ -1,6 +1,9 @@
 FROM devlikeapro/waha:latest
 
-# Passa a variável de ambiente para dentro do container
-ENV WAHA_API_KEY=${WAHA_API_KEY}
+# Copia as variáveis de ambiente para dentro do container
+COPY .env /app/.env
+
+# Carrega o .env ao iniciar
+ENV WAHA_ENV_FILE=/app/.env
 
 EXPOSE 3000

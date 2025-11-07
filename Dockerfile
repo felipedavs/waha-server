@@ -1,11 +1,11 @@
+# Usa a imagem oficial do WAHA
 FROM devlikeapro/waha:latest
 
-# Copia o arquivo .env que está na raiz do projeto
-COPY .env /app/.env
+# Define a chave da API direto no container
+ENV WAHA_API_KEY=davs
 
-# Força o WAHA a usar o arquivo .env e as variáveis do Render
-ENV WAHA_ENV_FILE=/app/.env
-ENV WAHA_API_KEY=${WAHA_API_KEY}
+# Define a porta padrão (Render usa a env PORT)
 ENV WAHA_PORT=${PORT}
 
+# Expõe a porta usada pelo Render
 EXPOSE 3000

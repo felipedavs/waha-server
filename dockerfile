@@ -1,8 +1,5 @@
-# Usa a imagem oficial do WAHA
+# Usa a imagem pronta do WAHA
 FROM devlikeapro/waha:latest
 
-# Expõe a porta padrão
+# Define a porta padrão do WAHA
 EXPOSE 3000
-
-# Define o comando padrão
-CMD ["npm", "start"]

@@ -1,13 +1,15 @@
+# Usa a imagem oficial do WAHA
 FROM devlikeapro/waha:latest
 
-# Copia o .env se você quiser manter
-COPY waha-server/.env /app/.env
-
-# Define a chave direto na inicialização — força o container a usar essa
-ENV WAHA_API_KEY=davs
+# Define variáveis de ambiente fixas (vão embutidas na imagem)
+ENV WAHA_API_KEY=davs123
 ENV WAHA_PORT=${PORT:-3000}
 
+# (Opcional) copia um .env local, se quiser manter outras configs
+# COPY waha-server/.env /app/.env
+
+# Expõe a porta padrão do Render
 EXPOSE 3000
 
-# Força o WAHA a rodar com a chave
-CMD export WAHA_API_KEY=davs && xvfb-run node /app/main.js
+# Comando de inicialização: força o uso da API key embutida
+CMD export WAHA_API_KEY=davs123 && xvfb-run node /app/main.js
